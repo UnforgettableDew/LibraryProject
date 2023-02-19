@@ -6,6 +6,7 @@ import com.unforgettable.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class BookController {
     }
 
     @PostMapping()
-    public void saveBook(@RequestBody Book book) {
+    public void saveBook(@Valid @RequestBody Book book) {
         bookService.addBook(book);
     }
 
@@ -28,7 +29,7 @@ public class BookController {
         bookService.deleteBookById(id);
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
@@ -38,7 +39,7 @@ public class BookController {
         return bookService.getBookById(id);
     }
 
-    @GetMapping("/list/{title}")
+    @GetMapping("/title/{title}")
     public List<Book> getBooksByTitle(@PathVariable(name = "title") String title) {
         return bookService.getBooksByTitle(title);
     }

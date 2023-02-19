@@ -3,6 +3,7 @@ package com.unforgettable.library.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "books")
@@ -12,14 +13,16 @@ public class Book {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty(message = "Book title should not be empty")
     @Column(name = "title")
     private String title;
 
+    @NotEmpty(message = "Book author should not be empty")
     @Column(name = "author")
     private String author;
 
     @ManyToOne
-    @JoinColumn(name="student_id")
+    @JoinColumn(name = "student_id")
     @JsonIgnore
     private Student student;
 

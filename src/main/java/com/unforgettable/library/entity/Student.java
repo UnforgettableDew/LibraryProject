@@ -1,6 +1,7 @@
 package com.unforgettable.library.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -11,18 +12,25 @@ public class Student {
     @Column(name = "id")
     private Long id;
 
+    @NotEmpty(message = "First name should not be empty")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotEmpty(message = "Last name should not be empty")
     @Column(name = "last_name")
     private String lastName;
 
+    @NotNull
+    @Min(value = 18, message = "Minimal age should be 18")
     @Column(name = "age")
     private Integer age;
 
+    @NotEmpty(message = "Email should not be empty")
+    @Email
     @Column(name = "email")
     private String email;
 
+    @NotEmpty(message = "Faculty should not be empty")
     @Column(name = "faculty")
     private String faculty;
 
@@ -58,7 +66,7 @@ public class Student {
         this.books = books;
     }
 
-    public void setStudent(Student student){
+    public void setStudent(Student student) {
         this.age = student.getAge();
         this.email = student.getEmail();
         this.faculty = student.getFaculty();

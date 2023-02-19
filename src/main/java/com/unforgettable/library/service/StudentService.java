@@ -42,7 +42,7 @@ public class StudentService {
         studentRepository.save(updatedStudent);
     }
 
-    public List<Book> getBooksReadByStudent(Long id){
+    public List<Book> getBooksReadByStudent(Long id) {
         return getStudentById(id).getBooks();
     }
 }
