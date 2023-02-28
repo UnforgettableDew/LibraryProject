@@ -7,6 +7,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -22,7 +24,7 @@ public class ApplicationExceptionHandler {
         ExceptionResponse response = new ExceptionResponse(
                 exception.getMessage(),
                 httpStatus,
-                ZonedDateTime.now(ZoneId.of("Z"))
+                Timestamp.valueOf(LocalDateTime.now())
         );
 
         return new ResponseEntity<>(response, httpStatus);
@@ -34,7 +36,7 @@ public class ApplicationExceptionHandler {
         ExceptionResponse response = new ExceptionResponse(
                 exception.getMessage(),
                 httpStatus,
-                ZonedDateTime.now(ZoneId.of("Z"))
+                Timestamp.valueOf(LocalDateTime.now())
         );
 
         return new ResponseEntity<>(response, httpStatus);
@@ -48,7 +50,7 @@ public class ApplicationExceptionHandler {
         ExceptionResponse response = new ExceptionResponse(
                 errors.toString(),
                 httpStatus,
-                ZonedDateTime.now(ZoneId.of("Z"))
+                Timestamp.valueOf(LocalDateTime.now())
         );
         return new ResponseEntity<>(response, httpStatus);
     }
